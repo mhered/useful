@@ -2,10 +2,9 @@
 
 ## How to recover ubuntu when windows f**cks up dual boot.
 
-Instructions based on: https://askubuntu.com/a/1134107
-
-Symptoms: for no reason dual boot stops working.
-- during reboot a message flashes:
+### Symptoms
+For no apparent reason dual boot stops working.
+- the following message flashes briefly during reboot:
 
 ```bash
 Failed to open \EFI\ubuntu\grubx64.efi - Not Found  
@@ -15,8 +14,12 @@ Failed to open \EFI\ubuntu\grubx64.efi - Not Found
 Failed to load image: Not Found    
 start_image() returned Not Found
 ```
-- rebooting skips the grub menu that allows to choose OS and boots directly on Windows. 
-Fix:
+- skips the grub menu that allows choosing OS and boots directly on Windows.
+
+
+### Fix
+
+Instructions based on: https://askubuntu.com/a/1134107
 
 1. power down 
 

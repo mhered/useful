@@ -1,42 +1,43 @@
 # useful
 
-Howto recover ubuntu when windows fucks up dual boot see https://askubuntu.com/a/1134107
+* How to recover ubuntu when windows f**cks up dual boot.
 
-power down 
+Instructions based on: https://askubuntu.com/a/1134107
 
-plug a live USB of Ubuntu 20.04 
+Symptoms: for no reason dual boot stops working.
+- during reboot a message flashes:
 
-power up, press F2 to access UEFI
+```bash
+Failed to open \EFI\BOOT\grubx64.efi - Not Found  
+Failed to load image: Not Found    
+start_image() returned Not Found, falling back to default order
+Failed to open \EFI\BOOT\grubx64.efi - Not Found  
+Failed to load image: Not Found    
+start_image() returned Not Found,
+```
+- rebooting skips the grub menu that allows to choose OS and boots directly on Windows. 
+Fix:
 
-ensure USB is first in boot order
+1. power down 
 
-Select try Ubuntu. 
+2. plug a live USB of Ubuntu 20.04 
 
-Connect to internet.
+3. Power up the laptop, access UEFI (in LG gram: press F2 during 3 secs)
 
-Open terminal and type
+4. Ensure USB is first in boot order
 
+5. Select "Try Ubuntu" this will boot Ubuntu from USB
+
+6. Configure Wifi to have internet connection.
+
+7. Open a terminal and type:
+
+```bash
 $ sudo add-apt-repository ppa:yannubuntu/boot-repair && sudo apt update
 $ sudo apt-get install boot-repair && boot-repair
+```
 
-Select recommended fix 
+8. Select "Recommended fix". This will fix grub and reinstall it and create a boot info log in a logbin.
+The app provides a report in a pastebin to send to boot.repair@gmail.com if further troubleshooting is needed
 
-This will fix grub and reinstall it and create a boot info log in a logbin.
-
-Reboot and enjoy dualbooting.
-
-Boot successfully repaired.
-
-Please write on a paper the following URL:
-https://paste.ubuntu.com/p/gwt2tF5m7p/
-
-In case you still experience boot problem, indicate this URL to:
-boot.repair@gmail.com or to your favorite support forum.
-
-You can now reboot your computer.
-
-Please do not forget to make your UEFI firmware boot on the Ubuntu 20.04.6 LTS entry (nvme0n1p1/efi/ubuntu/grubx64.efi file) !
-If your computer reboots directly into Windows, try to change the boot order in your UEFI firmware.
-If your UEFI firmware does not allow to change the boot order, change the default boot entry of the Windows bootloader.
-For example you can boot into Windows, then type the following command in an admin command prompt:
-bcdedit /set {bootmgr} path \EFI\ubuntu\grubx64.efi
+10. Reboot

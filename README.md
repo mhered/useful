@@ -8,12 +8,12 @@ Symptoms: for no reason dual boot stops working.
 - during reboot a message flashes:
 
 ```bash
-Failed to open \EFI\BOOT\grubx64.efi - Not Found  
+Failed to open \EFI\ubuntu\grubx64.efi - Not Found  
 Failed to load image: Not Found    
-start_image() returned Not Found, falling back to default order
-Failed to open \EFI\BOOT\grubx64.efi - Not Found  
+start_image() returned Not Found, falling back to default loader
+Failed to open \EFI\ubuntu\grubx64.efi - Not Found  
 Failed to load image: Not Found    
-start_image() returned Not Found,
+start_image() returned Not Found
 ```
 - rebooting skips the grub menu that allows to choose OS and boots directly on Windows. 
 Fix:

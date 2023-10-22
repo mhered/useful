@@ -1,6 +1,6 @@
 # useful
 
-* How to recover ubuntu when windows f**cks up dual boot.
+## How to recover ubuntu when windows f**cks up dual boot.
 
 Instructions based on: https://askubuntu.com/a/1134107
 

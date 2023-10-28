@@ -1,6 +1,8 @@
 # useful
-
-## How to recover ubuntu when windows f**cks up dual boot.
+1. [Recover after Windows corrupts dual boot](#recover-after-windows-corrupts-dual-boot)
+2. [Download video with subtitles to watch offline](#Download-video-with-subtitles-to-watch-offline)
+ 
+## Recover after Windows corrupts dual boot
 
 ### Problem
 For no apparent reason dual boot stops working.

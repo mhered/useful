@@ -2,7 +2,7 @@
 
 ## How to recover ubuntu when windows f**cks up dual boot.
 
-### Symptoms
+### Problem
 For no apparent reason dual boot stops working.
 - the following message flashes briefly during reboot:
 
@@ -14,8 +14,7 @@ Failed to open \EFI\ubuntu\grubx64.efi - Not Found
 Failed to load image: Not Found    
 start_image() returned Not Found
 ```
-- skips the grub menu that allows choosing OS and boots directly on Windows.
-
+- the grub menu that allows choosing OS is skipped, and instead Windows boots directly.
 
 ### Fix
 
@@ -44,3 +43,26 @@ $ sudo apt-get install boot-repair && boot-repair
 The app provides a report in a pastebin to send to boot.repair@gmail.com if further troubleshooting is needed
 
 10. Reboot
+
+## Download video with subtitles to watch offline
+
+### Problem
+You are boarding a plane and need to quickly download a video to finish watching it during the flight. And you want subtitles.
+
+### Fix
+
+1. If needed, install `yt-dlp`
+
+```bash
+$ sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+$ sudo chmod a+rx /usr/local/bin/yt-dlp  # Make executable
+```
+2. Type in terminal the command below replacing the video code e.g. `uf4zOigzTFo`. This downloads video and subtitles as 2 separate files e.g. `.vtt` and `.webp` to the current folder.
+
+```bash
+$ yt-dlp --write-sub --write-auto-sub --sub-lang "en.*" https://www.youtube.com/watch?v=uf4zOigzTFo
+```
+
+3. Play the video in VLC. In Subtitles select the appropriate `vtt` file. Note for some reason subtitles work in VLC but not in the default ubuntu player
+
+

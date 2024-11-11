@@ -1,7 +1,8 @@
 # useful
 1. [Recover after Windows corrupts dual boot](#recover-after-windows-corrupts-dual-boot)
-2. [Download video with subtitles to watch offline](#Download-video-with-subtitles-to-watch-offline)
-3. [Setup git in new computer](#Setup-git-in-new-computer)
+2. [Download video with subtitles to watch offline](#download-video-with-subtitles-to-watch-offline)
+3. [Setup git in new computer](#setup-git-in-new-computer)
+4. [Open SLDPRT CAD without SolidWorks](#open-sldprt-cad-without-solidworks)
 
    
 ## Recover after Windows corrupts dual boot
@@ -89,3 +90,14 @@ $ git push
 Username for 'https://github.com': # enter your username
 Password for 'https://mhered@github.com': # enter your PAT
 ```
+
+## Open SLDPRT CAD without SolidWorks
+### Problem
+many CAD files available for download are in SLDPRT format and SolidWorks requires suscription
+
+### Fix
+* Create account in [OnShape](https://cad.onshape.com/) (with spam user), open file then export as STL or STEP
+* [AnyConv](https://anyconv.com/) but rather unreliable: scale not respected, or failure to convert 
+* [ConvertCADFiles](https://convertcadfiles.com/): one free trial, afterwards pay per conversion
+* Not tested: [download eDrawing](https://www.solidworks.com/support/free-downloads) (for Windows)
+

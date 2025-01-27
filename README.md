@@ -3,8 +3,8 @@
 2. [Download video with subtitles to watch offline](#download-video-with-subtitles-to-watch-offline)
 3. [Setup git in new computer](#setup-git-in-new-computer)
 4. [Open SLDPRT CAD without SolidWorks](#open-sldprt-cad-without-solidworks)
-
-   
+5. [Embed video in Markdown](#embed-video-in-markdown)
+  
 ## Recover after Windows corrupts dual boot
 
 ### Problem
@@ -71,6 +71,7 @@ $ yt-dlp --write-sub --write-auto-sub --sub-lang "en.*" https://www.youtube.com/
 3. Play the video in VLC. In Subtitles select the appropriate `vtt` file. Note for some reason subtitles work in VLC but not in the default ubuntu player
 
 ## Setup git in new computer
+
 ### Problem 
 You try to git push and git asks for user/pwd, 
 
@@ -92,6 +93,7 @@ Password for 'https://mhered@github.com': # enter your PAT
 ```
 
 ## Open SLDPRT CAD without SolidWorks
+
 ### Problem
 many CAD files available for download are in SLDPRT format and SolidWorks requires suscription
 
@@ -101,3 +103,12 @@ many CAD files available for download are in SLDPRT format and SolidWorks requir
 * [ConvertCADFiles](https://convertcadfiles.com/): one free trial, afterwards pay per conversion
 * Not tested: [download eDrawing](https://www.solidworks.com/support/free-downloads) (for Windows)
 
+## Embed video in Markdown
+
+### Problem
+Markdown does not display mp4 and converting directly to gif yields huge files
+
+### Fix
+1. record live video with iphone (optionally edit it in the phone using imovie) / save desktop screencast with kazaam to mp4 
+2. edit mp4 in shotcut: cut to length, speed up?, select loop, export as gif animation
+3. upload gif to https://www.iloveimg.com/, resize by percentage 75% smaller

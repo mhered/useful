@@ -1,10 +1,13 @@
 # useful
-1.[Disable fast boot](#disable-fast-boot)
-2. [Recover after Windows corrupts dual boot](#recover-after-windows-corrupts-dual-boot)
-3. [Download video with subtitles to watch offline](#download-video-with-subtitles-to-watch-offline)
+1. [Recover after Windows corrupts dual boot](#recover-after-windows-corrupts-dual-boot)
+   
+2. [Download video with subtitles to watch offline](#download-video-with-subtitles-to-watch-offline)
+   
 4. [Setup git in new computer](#setup-git-in-new-computer)
-5. [Open SLDPRT CAD without SolidWorks](#open-sldprt-cad-without-solidworks)
-6. [Embed video in Markdown](#embed-video-in-markdown)
+   
+4. [Open SLDPRT CAD without SolidWorks](#open-sldprt-cad-without-solidworks)
+   
+5. [Embed video in Markdown](#embed-video-in-markdown)
 
 
 ## Recover after Windows corrupts dual boot

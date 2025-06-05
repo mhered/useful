@@ -1,10 +1,12 @@
 # useful
-1. [Recover after Windows corrupts dual boot](#recover-after-windows-corrupts-dual-boot)
-2. [Download video with subtitles to watch offline](#download-video-with-subtitles-to-watch-offline)
-3. [Setup git in new computer](#setup-git-in-new-computer)
-4. [Open SLDPRT CAD without SolidWorks](#open-sldprt-cad-without-solidworks)
-5. [Embed video in Markdown](#embed-video-in-markdown)
-  
+1.[Disable fast boot](#disable-fast-boot)
+2. [Recover after Windows corrupts dual boot](#recover-after-windows-corrupts-dual-boot)
+3. [Download video with subtitles to watch offline](#download-video-with-subtitles-to-watch-offline)
+4. [Setup git in new computer](#setup-git-in-new-computer)
+5. [Open SLDPRT CAD without SolidWorks](#open-sldprt-cad-without-solidworks)
+6. [Embed video in Markdown](#embed-video-in-markdown)
+
+
 ## Recover after Windows corrupts dual boot
 
 ### Problem
@@ -21,7 +23,7 @@ start_image() returned Not Found
 ```
 - the grub menu that allows choosing OS is skipped, and instead Windows boots directly.
 
-### Fix
+### Fix 1
 
 Instructions based on: https://askubuntu.com/a/1134107
 
@@ -49,6 +51,49 @@ The app provides a report in a pastebin to send to boot.repair@gmail.com if furt
 
 10. Reboot
 
+### Fix 2
+
+May need to disable fast boot and early threat checks for above to work
+
+There are 4 ways to enable/disable fast boot, see:  https://www.youtube.com/watch?v=M3nbEqSBs04
+
+1) control panel > hardware and sound > power options > behaviour closing lid> change settings unavailable > untick fast startup
+
+2. terminal > right-click>run as admin > 
+
+```shell
+> powercfg /h off
+```
+3 disable in group policy editor 
+but, need to install `gpedit` first, didn't succeed 
+create a file `gpedit-install.bat`:
+```
+FOR %F IN ("%SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~*.mum") DO (DISM /Online /NoRestart /Add-Package:"%F")
+FOR %F IN ("%SystemRoot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~*.mum") DO (DISM /Online /NoRestart /Add-Package:"%F")
+```
+execute it as admin
+```
+> gpedit.msc
+```
+
+### Fix 3
+
+If previous ones do not work, try manually
+Source: https://askubuntu.com/questions/88384/how-can-i-repair-grub-how-to-get-ubuntu-back-after-installing-windows/88432
+(CHECK SOURCE THIS IS NOT COMPLETE)
+
+```
+sudo fdisk -l # 1. Determine the partition number of your main partition and EFI
+sudo mount /dev/nvme0n1p7 /mnt  # 2. mount the main Linux sistem
+for i in /sys /proc /run /dev; do sudo mount --rbind "$i" "/mnt$i"; done # 3. some needed bindings (?)
+sudo mount /dev/nvme0n1p1 /mnt/boot/efi # 4. mount EFI
+sudo chroot /mnt # 5. update grub
+update-grub
+grub-install /dev/sda # 6. just, in case reinstall grub
+update-grub
+exit
+reboot
+```
 ## Download video with subtitles to watch offline
 
 ### Problem

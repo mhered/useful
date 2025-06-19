@@ -195,8 +195,15 @@ git commit -m "First clean chunk of change"
 # Abort if needed
 git reset --hard
 
-# drop stash when done
+# when done: 
+# drop stash
 git stash drop stash@{0}
+
+# merge the branch and delete it
+git checkout main
+git merge debug-patch
+git branch -d debug-patch
+
 
 ```
 

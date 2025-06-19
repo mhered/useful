@@ -9,6 +9,8 @@
    
 5. [Embed video in Markdown](#embed-video-in-markdown)
 
+5. [Recover large messy change in code](#recover-large-messy-change-in-code)
+
 
 ## Recover after Windows corrupts dual boot
 
@@ -160,3 +162,50 @@ Markdown does not display mp4 and converting directly to gif yields huge files
 1. record live video with iphone (optionally edit it in the phone using imovie) / save desktop screencast with kazaam to mp4 
 2. edit mp4 in shotcut: cut to length, speed up?, select loop, export as gif animation
 3. upload gif to https://www.iloveimg.com/, resize by percentage 75% smaller
+
+## Recover large messy change in code
+
+### Problem
+You made too many changes in your code without commiting, it does not work and you cannot debug. You want to go back and reapply changes step by step
+
+### Fix
+
+```bash
+# 1. stash
+git stash push -u -m "Full backup before debugging"
+
+# 2. go back to last safe commit
+git reset --hard HEAD
+
+# 3. create a patch file
+git stash show -p stash@{0} > changes.patch
+
+# 4. Create a new branch to work on
+git checkout -b debug-patch
+
+# 5. Apply the full patch (it becomes unstaged changes)
+git apply changes.patch
+
+# 6. Use Git's interactive staging to pick parts
+git add -p
+git commit -m "First clean chunk of change"
+
+# Repeat until all desired changes are committed
+
+# Abort if needed
+git reset --hard
+
+# drop stash when done
+git stash drop stash@{0}
+
+```
+
+
+
+| Step             | Command                               |
+| ---------------- | ------------------------------------- |
+| Apply full patch | `git apply changes.patch`             |
+| Stage part of it | `git add -p`                          |
+| Commit           | `git commit -m "..."`                 |
+| Repeat           | `git add -p`, then `git commit` again |
+| Abort if needed  | `git reset --hard`                    |

@@ -171,38 +171,45 @@ You made too many changes in your code without commiting, it does not work and y
 ### Fix
 
 ```bash
-# 1. stash
+# 1. stash staged, unstaged and also untracked files (ignored files are not stashed)
 git stash push -u -m "Full backup before debugging"
 
-# 2. go back to last safe commit
+# 2. go back to last safe commit (optional)
 git reset --hard HEAD
 
-# 3. create a patch file
+# 3. create a patch file (optional, for safety)
 git stash show -p stash@{0} > changes.patch
 
 # 4. Create a new branch to work on
-git checkout -b debug-patch
+git checkout -b fix-mess
 
 # 5. Apply the full patch (it becomes unstaged changes)
-git apply changes.patch
+git stash apply stash@{0}
 
 # 6. Use Git's interactive staging to pick parts
 git add -p
+# Options: y = stage this hunk, n = skip, q = quit,
+# a = stage all, d = skip all,
+# s = split hunk, e = edit manually, ? = help
+
 git commit -m "First clean chunk of change"
+
+git stash push -u -m "Tmp testing first chunk" # put aside uncomitted changes
+# <run tests>, when succesful ->
+git stash pop # apply and drop the temporary stash to resume adding changes
 
 # Repeat until all desired changes are committed
 
 # Abort if needed
 git reset --hard
 
-# when done: 
-# drop stash
+# when done: drop stash
 git stash drop stash@{0}
 
-# merge the branch and delete it
+# then merge the branch and delete it
 git checkout main
-git merge debug-patch
-git branch -d debug-patch
+git merge fix-mess
+git branch -d fix-mess
 
 
 ```
